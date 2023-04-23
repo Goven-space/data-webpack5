@@ -1,0 +1,32 @@
+.tableDropdown-wrapper {
+  width: 200px;
+  padding: 10px;
+  overflow: hidden;
+  text-align: center;
+}
+.tableDropdown-wrapper .tableDropdown-radio {
+  width: 180px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.tableDropdown-wrapper .tableDropdown-radio > * {
+  margin-bottom: 16px;
+}
+.tableDropdown-wrapper .tableDropdown-select {
+  width: 130px;
+  margin-bottom: 16px;
+  text-overflow: ellipsis;
+  /* display: flex;
+			flex-wrap:wrap;
+			justify-content:center;
+			align-content:center; */
+  /* white-space: nowrap;	 */
+}
+.tableDropdown-wrapper .tableDropdown-select .ant-checkbox-wrapper.ant-checkbox-group-item {
+  margin-top: 10px;
+  white-space: nowrap;
+  margin-right: 0px !important;
+  /*	width: 130px !important;  */
+  text-overflow: ellipsis;
+}

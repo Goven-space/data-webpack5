@@ -1,0 +1,8 @@
+.ant-row.ant-form-item.page-form-footer {
+  text-align: center;
+}
+.text-tooltip-box {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

@@ -1,0 +1,39 @@
+@import '~antd/dist/antd.less';
+.retrieveTool-wrapper{
+    background: #fff;
+    padding: 10px;
+    .retrieveTool-tags{
+        .retrieveTool-tags-items{
+            display: flex;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            span{
+                display: inline-block;
+                white-space: nowrap;
+                padding: 3px 5px;
+                max-width: 100px;
+                overflow: hidden;
+            }
+            &::after{
+                content: '\2715';
+                display: inline-block;
+                width: 28px;
+                height: 28px;
+                line-height: 28px;
+                text-align: center;
+            }
+            &:hover{
+                border: 1px solid @primary-color;
+                color: @primary-color;
+                &::after{
+                    color: #fff;
+                    background: @primary-color;
+                }
+            }
+        }
+    }
+		.searchContent{
+			/* border: 1px solid #ccc; 
+			padding: 5px 5px 5px 5px;*/
+		}
+}

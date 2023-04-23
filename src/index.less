@@ -1,0 +1,221 @@
+@import '~antd/dist/antd.less';
+
+ul,
+li,
+a {
+  list-style-type: none;
+}
+
+.vitasoy-loading-icon {
+  font-size: 50px;
+  color: #1890ff;
+}
+.vitasoy-loading {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 999999;
+  background: rgba(0, 0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// .codeEditor-wrapper {
+//   width: 100%;
+//   height: 100%;
+//   min-height: 600px;
+//   .CodeMirror {
+//     width: 100%;
+//     min-height: 600px;
+//   }
+// }
+.manage-content {
+  display: flex;
+  justify-content: flex-start;
+  height: 100%;
+  width: 100%;
+  .content-wrapper-draggle {
+    display: inline-flex;
+    justify-content: flex-start;
+    width: 100%;
+  }
+  > .ant-row {
+    width: 100%;
+    height: 100%;
+    margin: 0 !important;
+  }
+  .content-menu {
+    // border-right: 1px solid #ccc;
+    height: 100%;
+    // min-height: calc(100vh - 214px);
+    // max-height: calc(100vh - 214px);
+    padding: 20px 0 0 !important;
+    overflow-y: auto;
+    overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      width: 0 !important;
+    }
+    .text-tooltip-box,
+    .ant-menu-title-content {
+      font-size: 14px;
+    }
+
+    &-search {
+      padding: 10px;
+      height: 40px;
+      line-height: 40px;
+    }
+    .content-tree {
+      padding: 10px;
+      height: calc(100% - 40px);
+      width: 100%;
+      overflow-y: scroll;
+      &::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+        background-color: @scroll-bg-color;
+      }
+
+      //滚动条的轨道
+      &::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background: @scroll-bg-color;
+      }
+
+      //滚动条的滑块按钮
+      &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background: @scroll-bg-color;
+      }
+
+      //滚动条的上下两端的按钮
+      &::-webkit-scrollbar-button {
+        height: 0;
+        background-color: @scroll-bg-color;
+      }
+      .ant-tree-list {
+        .ant-tree-treenode {
+          width: 100%;
+          .ant-tree-node-content-wrapper {
+            width: 100%;
+            overflow: hidden;
+            padding: 0;
+            display: block;
+          }
+        }
+      }
+    }
+  }
+  .content-table {
+    height: 100%;
+    // min-height: calc(100vh - 214px);
+    // max-height: calc(100vh - 214px);
+    width: 100%;
+    overflow-y: auto;
+    padding-right: 20px !important;
+    &-top {
+      height: 60px;
+      width: 100%;
+      padding-top: 20px;
+    }
+    &-content {
+      margin-top: 10px;
+    }
+  }
+}
+
+.ant-btn {
+  border-radius: 4px !important;
+}
+
+.cutting-line {
+  position: relative;
+  top: -40px;
+  padding: 50px 0 !important;
+  width: 8px;
+  height: 100%;
+  box-sizing: content-box;
+  background-color: #f0f2f5;
+}
+
+.ant-input,
+.ant-select-selector,
+.ant-input-affix-wrapper {
+  border-radius: 4px !important;
+}
+
+.ant-tabs-large > .ant-tabs-nav .ant-tabs-tab {
+  padding: 16px;
+}
+
+.tree-classify-content {
+  padding: 10px;
+  .ant-tree-treenode {
+    height: 35px;
+    width: 200px;
+    padding: 0;
+    // overflow: hidden;
+    .ant-tree-indent {
+      flex: 0 0 auto;
+    }
+    .ant-tree-switcher {
+      display: flex;
+      flex: 0 0 auto;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+    }
+    .ant-tree-node-content-wrapper {
+      flex: 1 1 auto;
+      width: 150px;
+      height: 100%;
+      padding: 0;
+      overflow: hidden;
+      .ant-tree-title {
+        width: 100%;
+      }
+    }
+    .ant-tree-node-selected {
+      background-color: #fff !important;
+      .text-tooltip-box {
+        background-color: #f0f7ff;
+        border-radius: 3px;
+      }
+    }
+    .info-menu {
+      width: 100%;
+      .text-tooltip-box {
+        width: 100%;
+      }
+      .menu-text {
+        width: 100%;
+        height: 35px;
+        line-height: 35px;
+        padding-left: 10px;
+      }
+      .menu-btn {
+        width: 30px;
+        padding-left: 10px;
+      }
+    }
+  }
+}
+
+.wrapper-content {
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
+  .table-content {
+    margin-top: 10px;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+

@@ -1,0 +1,31 @@
+.tableDropdown-wrapper{
+    	width: 200px;
+		padding: 10px;
+    	overflow: hidden;
+		text-align: center;
+    .tableDropdown-radio{
+			width: 180px;
+			white-space: nowrap;
+    	text-overflow: ellipsis;
+    	overflow: hidden;
+        & > *{
+						margin-bottom: 16px;
+        }
+    }
+		.tableDropdown-select{
+			margin-bottom: 16px;
+			overflow-y: scroll;
+			height: 200px;
+			width: 210px;
+			display: flex;
+			flex-direction: column;
+			
+			.ant-checkbox-wrapper.ant-checkbox-group-item {
+					margin-top: 10px;
+    			white-space: nowrap;
+					margin-right: 0px !important;
+					/*	width: 130px !important;  */
+					text-overflow: ellipsis;
+			}
+		}
+}
