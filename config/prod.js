@@ -25,7 +25,7 @@ module.exports = merge(common, {
     minimize: true,
     minimizer: [
       new ESBuildMinifyPlugin({
-        target: 'es2015',
+        target: 'es2020',
         legalComments: 'none', // 去除注释
         css: true, // 压缩 css
         implementation: ESBuild, // 自定义 esbuild instance 实现

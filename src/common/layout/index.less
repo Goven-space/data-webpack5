@@ -326,6 +326,7 @@
     overflow-y: auto;
     overflow: -moz-scrollbars-none;
     -ms-overflow-style: none;
+    background-color: #ffff;
     &::-webkit-scrollbar {
       width: 0 !important;
     }
@@ -717,6 +718,7 @@
     overflow-y: auto;
     overflow: -moz-scrollbars-none;
     -ms-overflow-style: none;
+    background-color: #fff;
     &::-webkit-scrollbar {
       width: 0 !important;
     }
@@ -809,26 +811,31 @@
 .content-breadcrumb {
   position: absolute;
   z-index: 99;
-  top: 50px;
+  top: 60px;
+  margin-left: 8px;
   height: 44px;
   .layout-content-breadcrumb {
+    display: flex;
+    justify-content: start;
+    align-items: center;
     padding: 10px 0;
-    position: relative;
+    // position: relative;
     color: #999 !important;
     font-size: 14px;
     line-height: 20px;
 
     &::before {
       content: '';
-      display: inline-block;
+      // display: inline-block;
       width: 3px;
       height: 18px;
       background: #3a78f2;
       border-radius: 2px;
-      position: absolute;
-      left: 26px;
-      top: 50%;
-      margin-top: 2px;
+      margin-right: 10px;
+      // position: absolute;
+      // left: 26px;
+      // top: 50%;
+      // margin-top: 2px;
     }
 
     span:last-child {

@@ -6,9 +6,9 @@ import { isArray, isObject } from 'lodash';
 import { SaveOutlined } from '@ant-design/icons';
 import { showInfo } from '@tool/';
 import Icon from '@components/icon';
-import update from 'immutability-helper';
-import { DndProvider, useDrag, useDrop } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import { DndContext } from '@dnd-kit/core';
+import { arrayMove, SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 
 const type = 'DraggableBodyRow';
 
@@ -16,46 +16,28 @@ const { getFormField, saveDetailField, getFormFieldType, getFormFieldFormat } =
   standardManage.informationManageApi;
 
 const { Search } = Input;
-
-const DraggableBodyRow = ({ index, moveRow, className, style, ...restProps }) => {
-  const ref = useRef(null);
-  const [{ isOver, dropClassName }, drop] = useDrop({
-    accept: type,
-    collect: monitor => {
-      const { index: dragIndex } = monitor.getItem() || {};
-      if (dragIndex === index) {
-        return {};
+const TableRow = props => {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
+    id: props['data-row-key'],
+  });
+  const style = {
+    ...props.style,
+    transform: CSS.Transform.toString(
+      transform && {
+        ...transform,
+        scaleY: 1,
       }
-      return {
-        isOver: monitor.isOver(),
-        dropClassName: dragIndex < index ? ' drop-over-downward' : ' drop-over-upward',
-      };
-    },
-    drop: item => {
-      moveRow(item.index, index);
-    },
-  });
-  const [, drag] = useDrag({
-    type,
-    item: {
-      index,
-    },
-    collect: monitor => ({
-      isDragging: monitor.isDragging(),
-    }),
-  });
-  drop(drag(ref));
-  return (
-    <tr
-      ref={ref}
-      className={`${className}${isOver ? dropClassName : ''}`}
-      style={{
-        cursor: 'move',
-        ...style,
-      }}
-      {...restProps}
-    />
-  );
+    ),
+    transition,
+    cursor: 'move',
+    ...(isDragging
+      ? {
+          position: 'relative',
+          zIndex: 9999,
+        }
+      : {}),
+  };
+  return <tr {...props} ref={setNodeRef} style={style} {...attributes} {...listeners} />;
 };
 
 
@@ -238,25 +220,16 @@ export default function FormInfoPage(props) {
     );
   };
 
-  const components = {
-    body: {
-      row: DraggableBodyRow,
-    },
-  };
-
-  const moveRow = useCallback(
-    (dragIndex, hoverIndex) => {
-      const dragRow = dataSource[dragIndex];
-      const data = update(dataSource, {
-        $splice: [
-          [dragIndex, 1],
-          [hoverIndex, 0, dragRow],
-        ],
-      });
-      setDataSource(data);
-    },
-    [dataSource]
-  );
+  const onDragEnd = ({ active, over }) => {
+     if (over?.id && active.id !== over.id) {
+       setDataSource(prev => {
+         const activeIndex = prev.findIndex(i => i.id === active.id);
+         const overIndex = prev.findIndex(i => i.id === over?.id);
+         const list = arrayMove(prev, activeIndex, overIndex);
+         return list;
+       });
+     }
+   };
 
   return (
     <div>
@@ -275,25 +248,24 @@ export default function FormInfoPage(props) {
           <Search placeholder="字段注释/字段名称" style={{ width: 250 }} onSearch={onSearch} allowClear />
         </Col>
       </Row>
-      <DndProvider backend={HTML5Backend}>
-        <Table
-          dataSource={dataSource}
-          bordered
-          size="middle"
-          columns={columns}
-          rowKey={row => row.id}
-          scroll={{ x: 'max-content' }}
-          components={components}
-          pagination={false}
-          onRow={(_, index) => {
-            const attr = {
-              index,
-              moveRow,
-            };
-            return attr;
-          }}
-        />
-      </DndProvider>
+      <DndContext onDragEnd={onDragEnd}>
+        <SortableContext items={dataSource.map(i => i.id)} strategy={verticalListSortingStrategy}>
+          <Table
+            dataSource={dataSource}
+            bordered
+            size="middle"
+            columns={columns}
+            rowKey={row => row.id}
+            scroll={{ x: 'max-content' }}
+            pagination={false}
+            components={{
+              body: {
+                row: TableRow,
+              },
+            }}
+          />
+        </SortableContext>
+      </DndContext>
     </div>
   );
 }

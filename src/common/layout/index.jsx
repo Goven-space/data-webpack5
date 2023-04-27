@@ -165,7 +165,7 @@ const LayoutPage = props => {
         headerBtn={{ home: true }}
         configData={configData}
       />
-      <Layout style={{ marginLeft: leftWidth }}>
+      <Layout /* style={{ marginLeft: leftWidth }} */>
         <Sider width={leftWidth} className={siderClassName} collapsible collapsed={collapsed} trigger={null}>
           {configData.menuCollapse !== 'false' && (
             <div className="page-header-collapsed" style={{ left: leftWidth - 15 }} onClick={toggle} onMouseEnter={() => handleCollapsedHover(true)} onMouseLeave={() => handleCollapsedHover(false)}>
@@ -193,7 +193,7 @@ const LayoutPage = props => {
             />
           )}
         </Sider>
-        <div className="content-breadcrumb">
+        <div className="content-breadcrumb" style={{ left: leftWidth }}>
           <Breadcrumb className="layout-content-breadcrumb">
             {breadcrumb?.map(item => {
               return <Breadcrumb.Item key={item}>{item}</Breadcrumb.Item>;
